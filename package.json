@@ -22,7 +22,7 @@
     "electron": "^36.3.2"
   },
 "scripts": {
-  "start": "react-scripts start",
+  "dev": "react-scripts start",
   "build": "react-scripts build",
   "android": "npm run build && npx cap copy android && npx cap open android",
   "electron": "npm run build && electron electron/main.js",
