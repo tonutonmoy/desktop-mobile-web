@@ -12,6 +12,7 @@ import "./App.css";
 
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Home from "./pages/Home";
 import ProfileUpdate from "./pages/UpdateProfile";
 import MainLayout from "./layouts/MainLayout";
 
@@ -55,6 +56,7 @@ function AppWrapper() {
         {/* Authenticated layout */}
         <Route element={<MainLayout />}>
           
+          <Route path="/home" element={<Home />} />
           <Route path="/chat/:partnerId" element={<Chat />} />
           <Route path="/profile" element={<ProfileUpdate />} />
         </Route>
