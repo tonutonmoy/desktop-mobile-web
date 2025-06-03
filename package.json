@@ -12,27 +12,36 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.1",
+    "axios": "^1.9.0",
+    "date-fns": "^4.1.0",
+    "emoji-picker-react": "^4.12.2",
+    "howler": "^2.2.4",
+    "lodash": "^4.17.21",
+    "lucide-react": "^0.511.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.5.0",
+    "react-modal": "^3.16.3",
+    "react-router-dom": "^6.30.1",
     "react-scripts": "5.0.1",
+    "simple-peer": "^9.11.1",
+    "socket.io-client": "^4.8.1",
+    "sonner": "^2.0.5",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
     "electron": "^36.3.2"
   },
-"scripts": {
-  "dev": "react-scripts start",
-  "build": "react-scripts build",
-  "android": "npm run build && npx cap copy android && npx cap open android",
-  "electron": "npm run build && electron electron/main.js",
-  "build:android": "npx cap copy android",
-  "build:electron": "npm run build",
-  "run:electron": "electron electron/main.js", 
- "build-all": "npm run build && npm run build:electron && npm run build:android && npm run run:electron"
-
-},
-
+  "scripts": {
+    "dev": "react-scripts start",
+    "build": "react-scripts build",
+    "android": "npm run build && npx cap copy android && npx cap open android",
+    "electron": "npm run build && electron electron/main.js",
+    "build:android": "npx cap copy android",
+    "build:electron": "npm run build",
+    "run:electron": "electron electron/main.js",
+    "build-all": "npm run build && npm run build:electron && npm run build:android && npm run run:electron"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
