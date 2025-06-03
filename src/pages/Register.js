@@ -34,35 +34,20 @@ const Register = () => {
   };
 
   return (
-    <div style={{
-      minHeight: "100vh",
-      backgroundColor: "#f0f2f5",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      padding: "1rem"
-    }}>
-      <div style={{
-        backgroundColor: "white",
-        padding: "2rem",
-        borderRadius: "0.5rem",
-        boxShadow: "0 0 10px rgba(0,0,0,0.1)",
-        width: "100%",
-        maxWidth: "400px"
-      }}>
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "2rem" }}>
-          <div style={{ backgroundColor: "#25D366", borderRadius: "9999px", padding: "0.75rem", marginBottom: "1rem" }}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="40" height="40">
-              <path d="..." />
-            </svg>
-          </div>
-          <h1 style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#2d3748" }}>Create your account</h1>
-          <p style={{ color: "#718096", marginTop: "0.5rem" }}>Join WhatsApp today</p>
-        </div>
+    <div style={styles.wrapper}>
+      <div style={styles.leftSection}>
+        <h1 style={styles.logo}>facebook</h1>
+        <p style={styles.description}>
+          Facebook helps you connect and share with the people in your life.
+        </p>
+      </div>
 
-        <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-          <div style={{ display: "flex", gap: "1rem" }}>
+      <div style={styles.rightSection}>
+        <form onSubmit={handleSubmit} style={styles.card}>
+          <h2 style={styles.heading}>Create a new account</h2>
+          <p style={styles.subheading}>It’s quick and easy.</p>
+
+          <div style={styles.inputGroup}>
             <input
               type="text"
               name="firstName"
@@ -70,7 +55,7 @@ const Register = () => {
               value={form.firstName}
               onChange={handleChange}
               required
-              style={inputStyle}
+              style={styles.inputHalf}
             />
             <input
               type="text"
@@ -79,9 +64,10 @@ const Register = () => {
               value={form.lastName}
               onChange={handleChange}
               required
-              style={inputStyle}
+              style={styles.inputHalf}
             />
           </div>
+
           <input
             type="email"
             name="email"
@@ -89,80 +75,141 @@ const Register = () => {
             value={form.email}
             onChange={handleChange}
             required
-            style={inputStyle}
+            style={styles.input}
           />
           <input
             type="password"
             name="password"
-            placeholder="Password"
+            placeholder="New password"
             value={form.password}
             onChange={handleChange}
             required
             minLength={6}
-            style={inputStyle}
+            style={styles.input}
           />
-          {error && <div style={{ color: "red", fontSize: "0.875rem", textAlign: "center" }}>{error}</div>}
+
+          {error && <div style={styles.error}>{error}</div>}
 
           <button
             type="submit"
             disabled={isLoading}
             style={{
-              width: "100%",
-              padding: "0.75rem",
-              borderRadius: "0.5rem",
-              color: "white",
-              fontWeight: "600",
-              backgroundColor: isLoading ? "#A0AEC0" : "#25D366",
-              cursor: isLoading ? "not-allowed" : "pointer",
-              transition: "background-color 0.3s"
+              ...styles.registerButton,
+              backgroundColor: isLoading ? "#6c8ddf" : "#42b72a",
+              cursor: isLoading ? "not-allowed" : "pointer"
             }}
           >
-            {isLoading ? (
-              <span style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <svg
-                  style={{ marginRight: "0.5rem" }}
-                  className="animate-spin"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="4" opacity="0.25" />
-                  <path
-                    fill="white"
-                    d="M4 12a8 8 0 018-8V0C5.4 0 0 5.4 0 12h4zm2 5.3A8 8 0 014 12H0c0 3 1.1 5.8 3 7.9l3-2.6z"
-                    opacity="0.75"
-                  />
-                </svg>
-                Creating account...
-              </span>
-            ) : (
-              "Register"
-            )}
+            {isLoading ? "Creating account..." : "Sign Up"}
           </button>
-        </form>
 
-        <div style={{ marginTop: "1.5rem", textAlign: "center", fontSize: "0.875rem", color: "#718096" }}>
-          Already have an account?{" "}
-          <a href="/login" style={{ color: "#25D366", fontWeight: "500", textDecoration: "none" }}>
-            Sign in
-          </a>
-        </div>
+          <p style={styles.loginText}>
+            Already have an account?{" "}
+            <a href="/login" style={styles.loginLink}>Log In</a>
+          </p>
+        </form>
       </div>
     </div>
   );
 };
 
-// Input styles reused
-const inputStyle = {
-  width: "100%",
-  padding: "0.75rem",
-  border: "1px solid #CBD5E0",
-  borderRadius: "0.5rem",
-  outline: "none",
-  fontSize: "1rem",
-  boxSizing: "border-box"
+const styles = {
+  wrapper: {
+    minHeight: "100vh",
+    backgroundColor: "#f0f2f5",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "2rem",
+    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+    flexWrap: "wrap"
+  },
+  leftSection: {
+    flex: 1,
+    paddingRight: "2rem",
+    minWidth: "300px"
+  },
+  logo: {
+    color: "#1877f2",
+    fontSize: "4rem",
+    fontWeight: "bold",
+    marginBottom: "1rem"
+  },
+  description: {
+    fontSize: "1.5rem",
+    lineHeight: "2rem",
+    color: "#1c1e21"
+  },
+  rightSection: {
+    flex: "none",
+    width: "100%",
+    maxWidth: "400px"
+  },
+  card: {
+    backgroundColor: "#fff",
+    padding: "2rem",
+    borderRadius: "0.5rem",
+    boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
+    display: "flex",
+    flexDirection: "column",
+    gap: "1rem"
+  },
+  heading: {
+    fontSize: "1.5rem",
+    fontWeight: "bold",
+    color: "#1c1e21",
+    marginBottom: "0.25rem"
+  },
+  subheading: {
+    fontSize: "0.9rem",
+    color: "#606770",
+    marginBottom: "1rem"
+  },
+  inputGroup: {
+    display: "flex",
+    justifyContent: "space-between",
+    flexWrap: "wrap",
+    gap: "1rem"
+  },
+  inputHalf: {
+    flex: "1 1 48%",
+    padding: "0.75rem",
+    borderRadius: "0.5rem",
+    border: "1px solid #dddfe2",
+    fontSize: "1rem",
+    boxSizing: "border-box"
+  },
+  input: {
+    width: "100%",
+    padding: "0.75rem",
+    borderRadius: "0.5rem",
+    border: "1px solid #dddfe2",
+    fontSize: "1rem",
+    boxSizing: "border-box"
+  },
+  registerButton: {
+    padding: "0.75rem",
+    fontSize: "1.1rem",
+    fontWeight: "bold",
+    color: "white",
+    border: "none",
+    borderRadius: "0.5rem"
+  },
+  loginText: {
+    textAlign: "center",
+    fontSize: "0.875rem",
+    marginTop: "1rem",
+    color: "#606770"
+  },
+  loginLink: {
+    color: "#1877f2",
+    fontWeight: "500",
+    textDecoration: "none"
+  },
+  error: {
+    color: "#dc3545",
+    fontSize: "0.875rem",
+    textAlign: "center"
+  }
 };
 
 export default Register;
