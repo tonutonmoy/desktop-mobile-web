@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "homepage": ".",
+  "description": "A universal React app for web, mobile, and desktop.",
+  "author": "Your Name <your.email@example.com>",
+  "main": "electron/main.js",
   "dependencies": {
     "@capacitor/android": "^7.2.0",
     "@capacitor/cli": "^7.2.0",
@@ -33,7 +36,9 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "electron": "^36.3.2"
+    "electron": "^36.3.2",
+    "electron-builder": "^24.13.3",
+    "fs-extra": "^11.3.0"
   },
   "scripts": {
     "dev": "react-scripts start",
@@ -43,7 +48,23 @@
     "build:android": "npx cap copy android",
     "build:electron": "npm run build",
     "run:electron": "electron electron/main.js",
-    "build-all": "npm run build && npm run build:electron && npm run build:android && npm run run:electron"
+    "build-all": "npm run build && npm run build:electron && npm run build:android && npm run run:electron",
+    "dist": "npm run build && node scripts/copy-electron.js && electron-builder"
+  },
+  "build": {
+    "appId": "com.yourcompany.yourapp",
+    "productName": "ReactUniversalApp",
+    "files": [
+      "build/**/*"
+    ],
+    "asar": false,
+    "directories": {
+      "buildResources": "assets"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    }
   },
   "eslintConfig": {
     "extends": [
